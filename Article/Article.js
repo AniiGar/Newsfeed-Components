@@ -85,6 +85,18 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Best Programming Languages to Learn in 2020',
+    date: 'Nov 21st, 2019',
+    firstParagraph: `Mixtape chambray fixie williamsburg food truck tattooed. Whatever tumblr Austin, scenester etsy pitchfork williamsburg wayfarers. Tattooed wolf fixie banksy mlkshk dreamcatcher, irony VHS thundercats readymade high life homo fap seitan iphone.
+          Mixtape chambray fixie williamsburg food truck tattooed. Whatever tumblr Austin, scenester etsy pitchfork williamsburg wayfarers. Tattooed wolf fixie banksy mlkshk dreamcatcher, irony VHS thundercats readymade high life homo fap seitan iphone. `,
+
+    secondParagraph: `However, she mistook the drowsy eye alcohol warning for a winking eye alcohol suggestion. Excuse me while I circumvent you. The old reach-around. You need to do more with Rita. Believe me, I'd like to. Did Ted make an appointment? No. Well then Ted can get the hell out of this office! You get the hell out!
+          However, she mistook the drowsy eye alcohol warning for a winking eye alcohol suggestion. Excuse me while I circumvent you. The old reach-around. You need to do more with Rita. Believe me, I'd like to. Did Ted make an appointment? No. Well then Ted can get the hell out of this office! You get the hell out!`,
+
+    thirdParagraph: `Pastels Céline leggings leather shorts Saint Laurent beanie street style Fjallraven. Motif skirt strong eyebrows Choupette printed jacket grunge white chambray shirt denim. Colette chunky sole loafers trouser surf pop Prada backpack washed out statement Bag 'N' Noun silver collar. Rope necklace oversized A.P.C. rose gold knitwear capsule Raf Simons.
+          Pastels Céline leggings leather shorts Saint Laurent beanie street style Fjallraven. Motif skirt strong eyebrows Choupette printed jacket grunge white chambray shirt denim. Colette chunky sole loafers trouser surf pop Prada backpack washed out statement Bag 'N' Noun silver collar. Rope necklace oversized A.P.C. rose gold knitwear capsule Raf Simons.`
   }
 ];
 
@@ -112,3 +124,54 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+const createComponent = (object) => {
+  const articleDiv = document.createElement('div');
+  const heading = document.createElement('h2');
+  const dateP = document.createElement('p');
+  const pOne = document.createElement('p');
+  const pTwo = document.createElement('p');
+  const pThree = document.createElement('p');
+  const spanBtn = document.createElement('span');
+
+  articleDiv.appendChild(heading);
+  articleDiv.appendChild(dateP);
+  articleDiv.appendChild(pOne);
+  articleDiv.appendChild(pTwo);
+  articleDiv.appendChild(pThree);
+  articleDiv.appendChild(spanBtn);
+
+  articleDiv.classList.add('article');
+  dateP.classList.add('date');
+  spanBtn.classList.add('expandButton');
+                         
+  heading.textContent = object.title;
+  dateP.textContent = object.date;
+  pOne.textContent = object.firstParagraph;
+  pTwo.textContent = object.secondParagraph;
+  pThree.textContent = object.thirdParagraph;
+  spanBtn.textContent = 'expand';
+
+  spanBtn.addEventListener('click', ()=>{
+    articleDiv.classList.toggle('article-open');
+
+    if (spanBtn.textContent === "expand") {
+      spanBtn.textContent = "collapse";
+    } else {
+      spanBtn.textContent = "expand";
+    }
+  })
+
+  return articleDiv;
+}
+
+// console.log(newComponent(data[0]));
+
+const articleParent = document.querySelector('.articles');
+
+// articles.appendChild(newComponent(data[0]));
+
+data.forEach((object)=>{
+  const newArticle = createComponent(object);
+  articleParent.appendChild(newArticle);
+});
