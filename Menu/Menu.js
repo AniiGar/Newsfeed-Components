@@ -44,16 +44,15 @@ const creatComponent = (array) => {
   menuDiv.classList.add('menu');
 
   array.forEach((item)=>{
-    item = document.createElement('li');
-    item.textContent = 'item';
-    menuList.appendChild(item);
-
-    menuBtn.addEventListener('click', ()=>{
-      menuDiv.classList.toggle('menu--open');
-  
-    })
+    listItem = document.createElement('li');
+    listItem.textContent = item;
+    menuList.appendChild(listItem);   
 
     return item;
+  })
+
+  menuBtn.addEventListener('click', ()=>{
+    menuDiv.classList.toggle('menu--open');
   })
 
   return menuDiv
@@ -62,7 +61,7 @@ const creatComponent = (array) => {
 const headerMenu = document.querySelector('.header');
 const menu = creatComponent(menuItems);
 
-menuBtn.appendChild(menu);
+headerMenu.appendChild(menu);
 
 // creatComponent(menuItems);
 
@@ -71,4 +70,4 @@ menuBtn.appendChild(menu);
 //   item.textContent = `${item}`;
 // })
 
-console.log(creatComponent(menuItems));
+// console.log(creatComponent(menuItems));
